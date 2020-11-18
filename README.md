@@ -1,13 +1,17 @@
 ======== CARA MENJALANKAN PERTAMA KALI ============
-edit di .env
-    DB_DATABASE=db_201753080_pkl
-    DB_USERNAME=root
-    DB_PASSWORD=
+<br />
+ <ul>
+    edit di .env
+    <li>DB_DATABASE=db_201753080_pkl</li>
+    <li>DB_USERNAME=root</li>
+    <li>DB_PASSWORD=</li>
+ </ul>
+
 
 buka terminal di folder projek
     hapus folder " public/* storage *" 
     jalankan * php storage:link *
-    
+
 
 
 

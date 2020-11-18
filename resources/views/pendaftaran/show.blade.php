@@ -109,9 +109,11 @@
                         {{-- <div class="col">
                             <a href="{{ url("/pendaftaran/$item->id/edit") }}" class="btn btn-outline-info">Edit</a>
                         </div> --}}
-                        <div class="col">
-                          <a href="{{ url("/pendaftaran/$item->id/edit") }}" class="btn btn-outline-info">Edit</a>
-                        </div>
+                        @foreach ($berkas as $item)
+                          <div class="col">
+                            <a href="{{ url("/pemberkasan/$item->id") }}" class="btn btn-outline-info">Berkas</a>
+                          </div>
+                        @endforeach
 
                       </div>    
                     @endforeach

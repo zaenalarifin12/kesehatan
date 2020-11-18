@@ -113,7 +113,9 @@ class PendaftaranController extends Controller
     {
         $daftar = DB::select("SELECT * FROM daftar_praktik WHERE id = $id");
 
-        return view("pendaftaran.show", ["daftar" => $daftar]);
+        $berkas = DB::select("SELECT * FROM pemberkasan WHERE daftar_id = $id");
+
+        return view("pendaftaran.show", ["daftar" => $daftar, "berkas" => $berkas]);
     }
 
     /**

@@ -135,7 +135,7 @@
                           @foreach ($rekomendasi as $item2)
                             <div class="row">
                               @if ($item2->status == 2)
-                                <a href="{{ url("/rekomendasi/$item2->id/cetak") }}" class="btn btn-success btn-sm">Cetak</a>
+                                <a href="{{ url("/rekomendasi/$item2->id/cetak") }}" class="btn btn-success btn-sm">Cetak Rekomendasi</a>
                               @endif
                             </div>
                           @endforeach
@@ -145,7 +145,7 @@
                           @foreach ($sip as $item2)
                             <div class="row">
                               @if ($item2->status == 2)
-                                <a href="{{ url("/sip/$item2->id/cetak") }}" class="btn btn-success btn-sm">Cetak</a>
+                                <a href="{{ url("/sip/$item2->id/cetak") }}" class="btn btn-success btn-sm">Cetak SIP</a>
                               @endif
                             </div>
                           @endforeach

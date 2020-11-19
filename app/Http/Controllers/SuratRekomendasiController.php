@@ -95,7 +95,16 @@ class SuratRekomendasiController extends Controller
      */
     public function show($id)
     {
-        //
+        // rekomendasi
+        // user
+        // berkasi
+        $rekomendasi = DB::select("SELECT * FROM surat_rekomendasi WHERE id = $id");
+
+        $daftar = DB::select("SELECT * FROM daftar_praktik WHERE id = ". $rekomendasi[0]->daftar_id);
+
+        $berkas = DB::select("SELECT * FROM pemberkasan WHERE daftar_id = " . $daftar[0]->id);
+
+        return view("rekomendasi.show", compact("rekomendasi", "daftar", "berkas"));
     }
 
     /**
@@ -159,7 +168,7 @@ class SuratRekomendasiController extends Controller
         
         DB::update("UPDATE surat_rekomendasi SET status = 1 WHERE id = ?", [$id]);
 
-        return redirect("/rekomendasi");
+        return redirect()->back();
     }
 
     public function accKepala($id)
@@ -167,7 +176,7 @@ class SuratRekomendasiController extends Controller
         
         DB::update("UPDATE surat_rekomendasi SET status = 2 WHERE id = ?", [$id]);
 
-        return redirect("/rekomendasi");
+        return redirect()->back();
     }
 
     public function cetak($id)

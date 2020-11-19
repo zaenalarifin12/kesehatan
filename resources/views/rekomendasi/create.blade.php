@@ -47,8 +47,8 @@
 
                     <div class="form-group">
                         <label>jabatan</label>
-                        <input type="text" class="jabatan form-control" required>
-                        <input name="jabatan" type="hidden" class=" jabatan form-control" required>
+                        <input type="text" name="jabatan" class="jabatan form-control" required>
+                        {{-- <input name="jabatan" type="hidden" class=" jabatan form-control" required> --}}
                     </div>
 
                     <div class="form-group">

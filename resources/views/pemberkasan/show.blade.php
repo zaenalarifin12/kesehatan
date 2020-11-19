@@ -68,10 +68,40 @@
                     @endif
 
                     <div class="form-group">
-                      <div class="row">
+                      <div class="row d-flex justify-content-around">
                           <a href="{{ url("/pemberkasan/$item->id/edit") }}" class="btn btn-outline-info">Edit</a>
-                      </div>
+                      
+
+                        @if ($rekomendasi != null)
+                          @foreach ($rekomendasi as $item2)
+                          {{-- <div class="row"> --}}
+                            @if ($item2->status == 0 && auth()->user()->level == "kabid")
+                              <form action="{{ url("/rekomendasi/$item2->id/accKabid")}}" method="post" style="display:inline">
+                                <button class="btn btn-info" type="submit">Acc</button>
+                                @csrf
+                                @method("PUT")
+                              </form>
+                            @endif
+
+                            @if ($item2->status == 1 && auth()->user()->level == "kepala")
+                              <form action="{{ url("/rekomendasi/$item2->id/accKepala")}}" method="post" style="display:inline">
+                                <button class="btn btn-info" type="submit">Acc</button>
+                                @csrf
+                                @method("PUT")
+                              </form>
+                            @endif
+                          {{-- </div> --}}
+                          @endforeach      
+                        
+                        @else
+                              <p>Surat Rekomendasi belum ada</p>
+                        @endif
+                        
+                        </div>
+
                     </div>
+
+                    
                   </div>
 
                   

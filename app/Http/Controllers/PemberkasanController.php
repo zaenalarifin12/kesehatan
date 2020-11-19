@@ -112,11 +112,20 @@ class PemberkasanController extends Controller
      */
     public function show($id)
     {
-        $pemberkasan = DB::select("
-        SELECT * FROM pemberkasan WHERE id = ? 
-        ", [$id]);
+        // pemberkasan
+        $pemberkasan = DB::select("SELECT * FROM pemberkasan WHERE id = ? ", [$id]);
 
-        return view("pemberkasan.show", compact("pemberkasan"));
+        //daftar praktik
+        $daftar = DB::select("SELECT * FROM daftar_praktik WHERE id = ? ", [$pemberkasan[0]->id]);
+        
+        $rekomendasi= null;
+
+        if ($daftar) {
+            // rekomendasi
+            $rekomendasi = DB::select("SELECT * FROM surat_rekomendasi WHERE daftar_id = ? ", [$daftar[0]->id]);
+        }
+        
+        return view("pemberkasan.show", compact(["pemberkasan", "rekomendasi", "daftar"]));
     }
 
     /**

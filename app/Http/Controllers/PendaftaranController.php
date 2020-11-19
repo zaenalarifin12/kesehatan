@@ -57,7 +57,12 @@ class PendaftaranController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        DB::insert("INSERT INTO daftar_praktik (
+        if ($request->jenis == "baru") {
+            $table = "daftar_praktik";
+        }else{
+            $table = "daftar_praktik_perpanjangan";
+        }
+        DB::insert("INSERT INTO " . $table . " (
             jenis,
             nama,
             jekel,

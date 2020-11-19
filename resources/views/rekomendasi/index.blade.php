@@ -54,9 +54,7 @@
 
                                 @endif
 
-                                @if ($item->status == 2)
-                                  <a href="{{ url("/rekomendasi/$item->id/cetak") }}" class="btn btn-success btn-sm">Cetak</a>
-                                @endif
+                                
                               </td>
                             </tr>
                           @endforeach                          

@@ -52,9 +52,7 @@
                                   {{-- <a href="{{ url("/sip/$item->id/edit") }}" class="btn btn-info btn-sm">Edit</a> --}}
                                 @endif
 
-                                @if ($item->status == 2)
-                                  <a href="{{ url("/sip/$item->id/cetak") }}" class="btn btn-success btn-sm">Cetak</a>
-                                @endif
+                                
                               </td>
                             </tr>
                           @endforeach

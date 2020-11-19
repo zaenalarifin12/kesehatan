@@ -128,9 +128,29 @@
                         @else
                             <p>Sip Belum di isi</p>
                         @endif
-                        
 
                         </div>
+
+                        @if ($rekomendasi != null)
+                          @foreach ($rekomendasi as $item2)
+                            <div class="row">
+                              @if ($item2->status == 2)
+                                <a href="{{ url("/rekomendasi/$item2->id/cetak") }}" class="btn btn-success btn-sm">Cetak</a>
+                              @endif
+                            </div>
+                          @endforeach
+                        @endif
+
+                        @if ($sip != null)
+                          @foreach ($sip as $item2)
+                            <div class="row">
+                              @if ($item2->status == 2)
+                                <a href="{{ url("/sip/$item->id/cetak") }}" class="btn btn-success btn-sm">Cetak</a>
+                              @endif
+                            </div>
+                          @endforeach
+                        @endif
+
                     </div>
                   </div>
                   @endforeach

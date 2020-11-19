@@ -183,13 +183,15 @@ class SipController extends Controller
     public function accKabid($id)
     {
         DB::update("UPDATE sip SET status = 1 WHERE id = ?", [$id]);
-        return redirect("/sip");
+        
+        return redirect()->back();
     }
 
     public function accKepala($id)
     {   
         DB::update("UPDATE sip SET status = 2 WHERE id = ?", [$id]);
-        return redirect("/sip");
+
+        return redirect()->back();
     }
 
     public function cetak($id)

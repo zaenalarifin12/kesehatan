@@ -25,6 +25,7 @@
                             </th>
                             <th>Id Pendaftaran</th>
                             <th>Nama</th>
+                            <th>Jenis</th>
                             <th>Action</th>
                           </tr>
                         </thead>
@@ -34,8 +35,9 @@
                               <td> {{ $loop->iteration }} </td>
                               <td>{{ $item->id }}</td>
                               <td>{{ $item->nama }}</td>
+                              <td>{{ $item->jenis }}</td>
                               <td>
-                                <a href="{{ url("/pendaftaran/$item->id") }}" class="btn btn-primary btn-sm">Lihat</a>
+                                <a href="{{ url("/pendaftaran/". $item->id . "?type=" . $item->jenis) }}" class="btn btn-primary btn-sm">Lihat</a>
                                 <form action="{{ url("/pendaftaran/$item->id") }}" method="post" style="display:inline">
                                   <button class="btn btn-sm btn-danger" type="submit">Hapus</button>
                                   @csrf

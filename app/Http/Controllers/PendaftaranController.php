@@ -14,10 +14,25 @@ class PendaftaranController extends Controller
      */
     public function index()
     {
+
         if(auth()->user()->level == "pendaftar"){
             $daftar_praktik = DB::select("SELECT * FROM daftar_praktik WHERE user_id = ?", [auth()->user()->id]);
+
+            $daftar_p = DB::select("SELECT * FROM daftar_praktik_perpanjangan WHERE user_id = ?", [auth()->user()->id]);
+            
+            foreach($daftar_p as $item){
+                array_push($daftar_praktik, $item);
+            }
+            
         }else{
             $daftar_praktik = DB::select("SELECT * FROM daftar_praktik");
+
+            $daftar_p = DB::select("SELECT * FROM daftar_praktik_perpanjangan");
+            
+            foreach($daftar_p as $item){
+                array_push($daftar_praktik, $item);
+            }
+            
         }
         
         return view("pendaftaran.index", ["daftar" => $daftar_praktik]);
@@ -109,10 +124,18 @@ class PendaftaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $daftar = DB::select("SELECT * FROM daftar_praktik WHERE id = $id");
+        if($request->type == "baru"){
+            
+            $daftar = DB::select("SELECT * FROM daftar_praktik WHERE id = $id");
 
+        } else if($request->type == "lama"){
+
+            $daftar = DB::select("SELECT * FROM daftar_praktik_perpanjangan WHERE id = $id");
+
+        }
+        
         $berkas = DB::select("SELECT * FROM pemberkasan WHERE daftar_id = $id");
 
         return view("pendaftaran.show", ["daftar" => $daftar, "berkas" => $berkas]);

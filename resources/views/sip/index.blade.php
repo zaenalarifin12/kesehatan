@@ -41,29 +41,15 @@
                               <td>{{ $item->no_rekomendasi }}</td>
                               <td> {{($item->status == 0) ? "belum disetujui": (($item->status == 1) ? "disetujui kabid" : "disetujui kepala")}} </td>
                               <td>
-                                @if ($item->status == 0 && auth()->user()->level == "kabid")
-                                  <form action="{{ url("/sip/$item->id/accKabid")}}" method="post" style="display:inline">
-                                    <button class="btn btn-info btn-sm" type="submit">Acc</button>
-                                    @csrf
-                                    @method("PUT")
-                                  </form>
-                                @endif
-
-                                @if ($item->status == 1 && auth()->user()->level == "kepala")
-                                  <form action="{{ url("/sip/$item->id/accKepala")}}" method="post" style="display:inline">
-                                    <button class="btn btn-info btn-sm" type="submit">Acc</button>
-                                    @csrf
-                                    @method("PUT")
-                                  </form>
-                                @endif
-
+                                
                                 @if (auth()->user()->level != "pendaftar" || auth()->user()->level != "kepala")
                                   <form action="{{ url("/sip/$item->id")}}" method="post" style="display:inline">
                                     <button class="btn btn-danger btn-sm" type="submit">Hapus</button>
                                     @csrf
                                     @method("DELETE")
                                   </form>
-                                  <a href="{{ url("/sip/$item->id/edit") }}" class="btn btn-info btn-sm">Edit</a>
+                                  <a href="{{ url("/sip/$item->id") }}" class="btn btn-info btn-sm">Lihat</a>
+                                  {{-- <a href="{{ url("/sip/$item->id/edit") }}" class="btn btn-info btn-sm">Edit</a> --}}
                                 @endif
 
                                 @if ($item->status == 2)

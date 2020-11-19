@@ -118,14 +118,16 @@ class PemberkasanController extends Controller
         //daftar praktik
         $daftar = DB::select("SELECT * FROM daftar_praktik WHERE id = ? ", [$pemberkasan[0]->id]);
         
-        $rekomendasi= null;
+        $rekomendasi    = null;
+        $sip            = null;
 
         if ($daftar) {
             // rekomendasi
             $rekomendasi = DB::select("SELECT * FROM surat_rekomendasi WHERE daftar_id = ? ", [$daftar[0]->id]);
+            $sip = DB::select("SELECT * FROM sip WHERE rekomendasi_id = ? ", [$rekomendasi[0]->id]);
         }
         
-        return view("pemberkasan.show", compact(["pemberkasan", "rekomendasi", "daftar"]));
+        return view("pemberkasan.show", compact(["pemberkasan", "rekomendasi", "daftar", "sip"]));
     }
 
     /**

@@ -107,7 +107,15 @@ class SipController extends Controller
      */
     public function show($id)
     {
-        //
+        $sip = DB::select("SELECT * FROM sip WHERE id = ?", [$id]);
+
+        $rekomendasi = DB::select("SELECT * FROM surat_rekomendasi WHERE id = " . $sip[0]->rekomendasi_id);
+
+        $daftar = DB::select("SELECT * FROM daftar_praktik WHERE id = ". $rekomendasi[0]->daftar_id);
+
+        $berkas = DB::select("SELECT * FROM pemberkasan WHERE daftar_id = " . $daftar[0]->id);
+
+        return view("sip.show", compact(["sip", "rekomendasi", "daftar", "berkas"]));
     }
 
     /**

@@ -73,6 +73,8 @@
                       
 
                         @if ($rekomendasi != null)
+                          
+                          Surat Rekomendasi
                           @foreach ($rekomendasi as $item2)
                           {{-- <div class="row"> --}}
                             @if ($item2->status == 0 && auth()->user()->level == "kabid")
@@ -97,14 +99,40 @@
                               <p>Surat Rekomendasi belum ada</p>
                         @endif
                         
+
+                        @if ($sip != null)
+                        
+                          @foreach ($sip as $item2)
+                          
+                          SIP
+                            @if ($item2->status == 0 && auth()->user()->level == "kabid")
+                              
+                              <form action="{{ url("/sip/$item2->id/accKabid")}}" method="post" style="display:inline">
+                                <button class="btn btn-info btn-sm" type="submit">Acc</button>
+                                @csrf
+                                @method("PUT")
+                              </form>
+                            @endif
+
+                            @if ($item2->status == 1 && auth()->user()->level == "kepala")
+                            
+                              <form action="{{ url("/sip/$item2->id/accKepala")}}" method="post" style="display:inline">
+                                <button class="btn btn-info btn-sm" type="submit">Acc</button>
+                                @csrf
+                                @method("PUT")
+                              </form>
+                            @endif
+
+                          @endforeach
+
+                        @else
+                            <p>Sip Belum di isi</p>
+                        @endif
+                        
+
                         </div>
-
                     </div>
-
-                    
                   </div>
-
-                  
                   @endforeach
                 </div>
               </div>

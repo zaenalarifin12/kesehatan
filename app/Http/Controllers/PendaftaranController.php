@@ -12,30 +12,29 @@ class PendaftaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        
 
         if(auth()->user()->level == "pendaftar"){
-            $daftar_praktik = DB::select("SELECT * FROM daftar_praktik WHERE user_id = ?", [auth()->user()->id]);
-
-            $daftar_p = DB::select("SELECT * FROM daftar_praktik_perpanjangan WHERE user_id = ?", [auth()->user()->id]);
-            
-            foreach($daftar_p as $item){
-                array_push($daftar_praktik, $item);
-            }
+        
+            if($request->type == "baru")
+                $daftar_praktik = DB::select("SELECT * FROM daftar_praktik WHERE user_id = ?", [auth()->user()->id]);
+            else
+                $daftar_praktik = DB::select("SELECT * FROM daftar_praktik_perpanjangan WHERE user_id = ?", [auth()->user()->id]);
             
         }else{
-            $daftar_praktik = DB::select("SELECT * FROM daftar_praktik");
 
-            $daftar_p = DB::select("SELECT * FROM daftar_praktik_perpanjangan");
-            
-            foreach($daftar_p as $item){
-                array_push($daftar_praktik, $item);
-            }
+            if($request->type == "baru")
+                $daftar_praktik = DB::select("SELECT * FROM daftar_praktik");
+            else
+                $daftar_praktik = DB::select("SELECT * FROM daftar_praktik_perpanjangan");
             
         }
         
-        return view("pendaftaran.index", ["daftar" => $daftar_praktik]);
+        return view("pendaftaran.index", ["daftar" => $daftar_praktik,
+        "type"  => $request->type
+        ]);
     }
 
     /**
@@ -43,9 +42,11 @@ class PendaftaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view("pendaftaran.create");
+        $type = $request->type;
+
+        return view("pendaftaran.create", compact("type") );
     }
 
     /**
@@ -204,10 +205,14 @@ class PendaftaranController extends Controller
         return redirect("/pendaftaran");
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        DB::delete("DELETE FROM daftar_praktik WHERE id = ?", [$id]);
+        if ($request->type == "lama") {
+            DB::delete("DELETE FROM daftar_praktik_perpanjangan WHERE id = ?", [$id]);
+        }else{
+            DB::delete("DELETE FROM daftar_praktik WHERE id = ?", [$id]);
+        }
 
-        return redirect("/pendaftaran");
+        return redirect("/pendaftaran?type=$request->type");
     }
 }

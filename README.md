@@ -1,106 +1,17 @@
-======== CARA MENJALANKAN PERTAMA KALI ============
-<br />
- <ul>
-    edit di .env
-    <br />
-        <li>DB_DATABASE=db_201753080_pkl</li>
-        <li>DB_USERNAME=root</li>
-        <li>DB_PASSWORD=</li>
- </ul>
+pendaftar
+[x] 1. di menu pendaftaran ada sub menu baru dan perpanjang 
+[x] 2. tombol edit, di menu surat rekom , sip  di hapus dan diganti jadi cetak sama seperti aplikasi yang belum di edit kemarin
 
+kasi 
+[x] 1. menu pendaftaran tidak usah ada tombol daftar baru dan di menu berkas juga tidak usah ada
+[x] 2. menu surat rekom dan sip jika kabid dan kepala sudah acc ada tombol cetak jika sudh di acc kabid dan kepala formatnya seperti yang kemarin
+[x] 3. menu surat sip di buat otomatis keisi separti surat rekom
 
-buka terminal di folder projek <br />
-hapus folder " public/* storage *" <br />
-jalankan * php storage:link * <br />
+kabid
+[x] 1. di menu pendaftar dan berkas gk usah ada tombol daftar baru
+[x] 2. di surat rekom dan sip setelah di klik lihat dan kelik berkas ada tombol acc dan tidak acc ,dan tombol cetak setelah kepala meng acc juga  
 
+kepala
+[x] 1. di menu pendaftar dan berkas gk usah ada tombol daftar baru
+[x] 2. di surat rekom dan sip setelah di klik lihat dan kelik berkas ada tombol acc dan tidak acc ,dan tombol cetak setelah kepala meng acc juga
 
-
-
-
-
-
-
-================= SKIP DULU ======================
-TASK BELUM SELESAI
-    PENDAFTARAN EDIT
-
-    
-TABLE
-    users
-        id
-        email
-        username
-        password
-        level
-            pendaftar
-            kasi SDK
-            kabid
-            kepala dinas
-    
-    daftar_praktik_lama
-        nama
-        jenis kelamin
-        ttl
-        agama
-        alamat rumah
-        no telepon
-        alamat praktik
-        alamat_kantor
-        email
-        pendidikan terakhir
-        universitas
-        no_surat rekomendasi lama
-        no sip lama
-        sip ke
-
-    pemberkasan
-        foto rapi
-        foto ijazah
-        foto ktp
-        foto STR dilegalisir KKI
-        foto surat pernyataan tempat praktik
-        foto surat persetujuan dari atasan
-        foto sertifikat bpjs
-        foto SIP [jika sudah mengajukan sip harus di isi] [boleh kosong]
-        id_daftar
-
-    surat rekomendasi
-        foto
-        no_rekomendasi
-        id pendaftaran
-        nama
-        jabatan
-        alamat praktik
-        id_daftar
-
-    SIP
-        id
-        foto
-        nomer sip
-        id pendaftaran
-        nama
-        ttl
-        alamat rumah
-        nama tempat praktik
-        masa berlaku
-        no rekomendasi
-        untuk praktik
-        id_pendaftaran
-
-
-// halaman
-login 
-register
-home
-    menu
-        users
-        pendaftaran [baru|lama]
-            -> datatable pendaftaran -> crud pendaftaran
-        berkas
-            -> datatable pendaftaran -> crud pendaftaran
-        surat rekomendasi
-            -> datatable pendaftaran -> crud pendaftaran -> cetak[rekomendasi|pendaftaran] -> acc/hapus
-        surat sip
-            -> datatable pendaftaran -> crud pendaftaran -> cetak[sip|rekomendasi|pendaftaran] -> acc/hapus
-        laporan
-            -> datatable pendaftaran -> crud pendaftaran

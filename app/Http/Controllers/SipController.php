@@ -194,6 +194,14 @@ class SipController extends Controller
         return redirect()->back();
     }
 
+    public function tidakSetuju($id)
+    {   
+        DB::update("UPDATE sip SET status = 4 WHERE id = ?", [$id]);
+
+        return redirect()->back();
+    }
+
+
     public function cetak($id)
     {
         
@@ -208,5 +216,12 @@ class SipController extends Controller
         
         $pdf = PDF::loadView('sip.cetak', compact("data"));
         return $pdf->stream('sip.pdf');
+    }
+
+    public function getapi($id)
+    {
+        $sip = DB::select("SELECT * FROM sip WHERE id = $id");
+
+        return response()->json($sip);
     }
 }

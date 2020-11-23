@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(["middleware" => ["auth"]], function(){
-    Route::get('/', function () { return redirect("/pendaftaran"); });
+    Route::get('/', function () { return redirect("/pendaftaran?type=lama"); });
     
     Route::resource('/pendaftaran',                 "PendaftaranController");
     Route::resource('/pemberkasan',                 "PemberkasanController");
@@ -26,6 +26,7 @@ Route::group(["middleware" => ["auth"]], function(){
     Route::resource('/sip',                         "SipController");
     Route::put('/sip/{id}/accKabid',                "SipController@accKabid");
     Route::put('/sip/{id}/accKepala',               "SipController@accKepala");
+    Route::put('/sip/{id}/tidakSetuju',               "SipController@tidakSetuju");
     Route::get('/sip/{id}/cetak',                   "SipController@cetak");
     Route::resource('/users',                       "UserController");
 });

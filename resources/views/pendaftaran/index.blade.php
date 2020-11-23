@@ -13,7 +13,10 @@
                 <div class="card">
                   <div class="card-header">
                     <h4>Daftar Pendaftaran tempat praktik</h4>
-                    <a href="{{ url("/pendaftaran/create") }}" class="btn btn-info">Daftar baru</a>
+                    @if (Auth::user()->level == "pendaftar")
+                      <a href="{{ url("/pendaftaran/create?type=$type") }}" class="btn btn-info">Daftar baru</a>    
+                    @endif
+                    
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
@@ -38,7 +41,7 @@
                               <td>{{ $item->jenis }}</td>
                               <td>
                                 <a href="{{ url("/pendaftaran/". $item->id . "?type=" . $item->jenis) }}" class="btn btn-primary btn-sm">Lihat</a>
-                                <form action="{{ url("/pendaftaran/$item->id") }}" method="post" style="display:inline">
+                                <form action="{{ url("/pendaftaran/$item->id" . "?type=" . $item->jenis) }}" method="post" style="display:inline">
                                   <button class="btn btn-sm btn-danger" type="submit">Hapus</button>
                                   @csrf
                                   @method("DELETE")

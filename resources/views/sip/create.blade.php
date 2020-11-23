@@ -26,7 +26,7 @@
 
                     <div class="form-group">
                     <label>ID surat rekomendasi</label>
-                        <select class="form-control" required name="rekomendasi_id">
+                        <select class="form-control" id="id_rekomendasi" required name="rekomendasi_id">
                             @foreach ($rekomendasi as $item)
                                 <option value="{{$item->id}}">{{ $item->no_rekomendasi }}</option>
                             @endforeach
@@ -40,12 +40,14 @@
 
                     <div class="form-group">
                         <label>nama</label>
-                        <input name="nama" type="text" class="form-control" required>
+                        <input type="text" disabled class="nama form-control" disabled required>
+                        <input name="nama" type="hidden" class="nama form-control" required>
                     </div>
 
                     <div class="form-group">
                         <label>alamat rumah</label>
-                        <input name="alamat_rumah" type="text" class="form-control" required>
+                        <input type="text" disabled class="alamat_rumah form-control" required>
+                        <input name="alamat_rumah" type="hidden" class="alamat_rumah form-control" required>
                     </div>
 
                     <div class="form-group">
@@ -60,22 +62,26 @@
 
                     <div class="form-group">
                       <label>alamat tempat praktik</label>
-                      <input name="alamat_praktik" type="text" class="form-control" required>
+                      <input type="text" disabled class="alamat_praktik form-control" required>
+                      <input name="alamat_praktik" type="hidden" class="alamat_praktik form-control" required>
                     </div>
 
                     <div class="form-group">
                       <label>masa berlaku  dari</label>
-                      <input name="masa_berlaku_dari" type="date" class="form-control" required>
+                      <input type="date" disabled class="masa_berlaku_dari form-control" required>
+                      <input name="masa_berlaku_dari" type="hidden" class="masa_berlaku_dari form-control" required>
                     </div>
 
                     <div class="form-group">
                       <label>masa berlaku sampai</label>
-                      <input name="masa_berlaku_sampai" type="date" class="form-control" required>
+                      <input type="date" disabled class="masa_berlaku_sampai form-control" required>
+                      <input name="masa_berlaku_sampai" type="hidden" class="masa_berlaku_sampai form-control" required>
                     </div>
 
                     <div class="form-group">
                       <label>untuk praktik</label>
-                      <input name="untuk_praktik" type="text" class="form-control" required>
+                      <input type="text" disabled class="untuk_praktik form-control" required>
+                      <input name="untuk_praktik" type="hidden" class="untuk_praktik form-control" required>
                     </div>
                    
                       <div class="row">
@@ -97,4 +103,30 @@
           </div>
         </section>
       </div>
+@endsection
+
+
+@section('script')
+    <script>
+      $('#id_rekomendasi').change(function () {
+        var id = $('#id_rekomendasi :selected').val();
+          
+          $.ajax({
+              type: 'GET',
+              url: "{{ url('api/sip') }}" + "/" + id,
+              success: function (data) {
+                // console.log(data)
+                data.forEach(element => {
+                  console.log(element)
+                  $(".nama").val(element.nama);
+                  $(".alamat_rumah").val(element.alamat_rumah);
+                  $(".alamat_praktik").val(element.alamat_praktik);
+                  $(".masa_berlaku_dari").val(element.masa_berlaku_dari);
+                  $(".masa_berlaku_sampai").val(element.masa_berlaku_sampai);
+                  $(".untuk_praktik").val(element.untuk_praktik);
+                });
+              }
+          });
+      });
+    </script>
 @endsection

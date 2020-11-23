@@ -39,7 +39,17 @@
                               <td>{{ $item->id_daftar }}</td>
                               <td>{{ $item->nomor_sip }}</td>
                               <td>{{ $item->no_rekomendasi }}</td>
-                              <td> {{($item->status == 0) ? "belum disetujui": (($item->status == 1) ? "disetujui kabid" : "disetujui kepala")}} </td>
+                              <td> 
+                                @if ($item->status == 0)
+                                  belum disetujui
+                                @elseif($item->status == 1)
+                                  disetujui kabid
+                                @elseif($item->status == 2)
+                                  disetujui kepala
+                                @else
+                                  ditolak
+                                @endif
+                              </td>
                               <td>
                                 
                                 @if (auth()->user()->level != "pendaftar" || auth()->user()->level != "kepala")
@@ -52,6 +62,9 @@
                                   {{-- <a href="{{ url("/sip/$item->id/edit") }}" class="btn btn-info btn-sm">Edit</a> --}}
                                 @endif
 
+                                @if ($item->status == 2)
+                                  <a href="{{ url("/sip/$item->id/cetak") }}" class="btn btn-success btn-sm">Cetak SIP</a>
+                                @endif
                                 
                               </td>
                             </tr>

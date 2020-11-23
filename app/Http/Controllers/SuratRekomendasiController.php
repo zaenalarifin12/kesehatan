@@ -179,6 +179,13 @@ class SuratRekomendasiController extends Controller
         return redirect()->back();
     }
 
+    public function tidakSetuju($id)
+    {   
+        DB::update("UPDATE surat_rekomendasi SET status = 4 WHERE id = ?", [$id]);
+
+        return redirect()->back();
+    }
+
     public function cetak($id)
     {
         $data = DB::select("

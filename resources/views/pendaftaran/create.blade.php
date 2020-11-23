@@ -22,8 +22,12 @@
                     <div class="form-group">
                       <label>Jenis pendaftaran</label>
                       <select class="form-control" name="jenis">
-                        <option value="baru">Pendaftaran baru</option>
-                        <option value="lama">Pendaftaran lama</option>
+                        @if ($type == "lama")
+                          <option value="lama" selected>Pendaftaran Perpanjangan</option>
+                        @else
+                          <option value="baru" selected>Pendaftaran baru</option>
+                        @endif
+                        
                       </select>
                     </div>
                     
@@ -82,7 +86,9 @@
                         <label>Universitas</label>
                         <input name="universitas" type="text" class="form-control" required>
                     </div>
-                    <p>Kalau anda pendaftar lama form dibawah wajib diisi</p>
+
+                    @if ($type == "lama")
+                      <p>Kalau anda pendaftar lama form dibawah wajib diisi</p>
                       <div class="form-group">
                         <label>NO. surat rekomendasi lama</label>
                         <input name="no_surat_rekomendasi_lama" type="text" class="form-control">
@@ -103,7 +109,10 @@
                             <input type="submit" class="btn btn-info" value="Simpan">
                         </div>
                       </div>
-                      @csrf
+                    @endif
+
+                    
+                    @csrf
                     </form> 
                   </div>
                   

@@ -34,9 +34,14 @@ class PemberkasanController extends Controller
      */
     public function create()
     {
-        $pendaftaran = DB::select("SELECT * FROM daftar_praktik WHERE user_id = ?",[auth()->user()->id]);
+        $pendaftaran        = DB::select("SELECT * FROM daftar_praktik WHERE user_id = ?",[auth()->user()->id]);
+
+        $pendaftaran_lama   = DB::select("SELECT * FROM daftar_praktik_perpanjangan WHERE user_id = ?",[auth()->user()->id]);
         
-        return view("pemberkasan.create", ["pendaftaran" => $pendaftaran]);
+        return view("pemberkasan.create", [
+            "pendaftaran" => $pendaftaran,
+            "pendaftaran_l" => $pendaftaran_lama
+        ]);
     }
 
     /**

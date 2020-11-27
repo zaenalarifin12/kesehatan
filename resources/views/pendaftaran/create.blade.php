@@ -21,11 +21,12 @@
 
                     <div class="form-group">
                       <label>Jenis pendaftaran</label>
-                      <select class="form-control" name="jenis">
                         @if ($type == "lama")
-                          <option value="lama" selected>Pendaftaran Perpanjangan</option>
+                          <input type="text" class="form-control" disabled value="Pendaftaran Perpanjangan">
+                          <input name="jenis" type="hidden" class="form-control" required value="lama">
                         @else
-                          <option value="baru" selected>Pendaftaran baru</option>
+                          <input type="text" class="form-control" disabled value="Pendaftaran baru">
+                          <input name="jenis" type="hidden" class="form-control" required value="baru">
                         @endif
                         
                       </select>
@@ -101,17 +102,17 @@
                         <label>SIP ke :</label>
                         <input name="sip_ke" type="text" class="form-control">
                       </div>
-                      <div class="row">
-                          <div class="col">
-                            <input type="reset" class="btn btn-danger" value="reset">
-                          </div>
-                          <div class="col">
-                            <input type="submit" class="btn btn-info" value="Simpan">
-                        </div>
-                      </div>
+                      
                     @endif
 
-                    
+                    <div class="row">
+                      <div class="col">
+                        <input type="reset" class="btn btn-danger" value="reset">
+                      </div>
+                      <div class="col">
+                        <input type="submit" class="btn btn-info" value="Simpan">
+                    </div>
+                  </div>
                     @csrf
                     </form> 
                   </div>

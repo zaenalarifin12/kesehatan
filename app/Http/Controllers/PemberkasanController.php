@@ -38,6 +38,7 @@ class PemberkasanController extends Controller
 
         $pendaftaran_lama   = DB::select("SELECT * FROM daftar_praktik_perpanjangan WHERE user_id = ?",[auth()->user()->id]);
         
+        
         return view("pemberkasan.create", [
             "pendaftaran" => $pendaftaran,
             "pendaftaran_l" => $pendaftaran_lama
@@ -52,7 +53,8 @@ class PemberkasanController extends Controller
      */
     public function store(Request $request)
     {
-
+        $id = explode(" ",$request->daftar_id);
+        
         $namerapi                               = "rapi" . time().".jpg";
         $nameijazah                             = "ijazah" . time().".jpg";
         $namektp                                = "ktp" . time().".jpg";
@@ -83,8 +85,10 @@ class PemberkasanController extends Controller
             surat_persetujuan_dari_atasan,
             sertifikat_bpjs,
             sip,
+            jenis,
             daftar_id
         ) VALUES (
+            ?,
             ?,
             ?,
             ?,
@@ -103,7 +107,8 @@ class PemberkasanController extends Controller
             $namesurat_persetujuan_dari_atasan,
             $namesertifikat_bpjs,
             $namesip,
-            $request->daftar_id
+            $id[1],
+            $id[0],
         ]);
 
         return redirect("/pemberkasan");

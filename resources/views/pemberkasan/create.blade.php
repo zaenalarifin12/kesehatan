@@ -23,10 +23,10 @@
                       <label>id pendaftaran</label>
                         <select class="form-control" required name="daftar_id">
                             @foreach ($pendaftaran as $item)
-                              <option value="{{$item->id}}">{{ $item->id }} - Baru</option>    
+                              <option value="{{$item->id}} baru">{{ $item->id }} - Baru</option>    
                             @endforeach
                             @foreach ($pendaftaran_l as $item)
-                              <option value="{{$item->id}}">{{ $item->id }} - Lama</option>    
+                              <option value="{{$item->id}} lama">{{ $item->id }} - Lama</option>    
                             @endforeach
                         </select>
                     </div>
